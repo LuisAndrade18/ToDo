@@ -14,7 +14,6 @@ const Main = () => {
   };
 
   const Delete = (id) => {
-    if(document.querySelector())
     setLista(lista.filter((item) => item.id !== id));
   };
  
