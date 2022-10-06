@@ -8,7 +8,7 @@ const Main = () => {
 
   const Adc = () => {
     if (tarefa !== '') {
-      setLista((listaAntiga) => [...lista, tarefas]);
+      setLista((listaAntiga) => [...listaAntiga, tarefas]);
     }
     setTarefa('');
   };
@@ -17,23 +17,18 @@ const Main = () => {
     setLista(lista.filter((item) => item.id !== id));
   };
  
-  const ClearDone = () => {
-    /*if ("input selecionado") {
-      alert("limpar a que está com o imput selecionado.")
-    }*/
-  };
- 
   const ClearAll = () => {
     setLista([]);
   };
 
+  const Riscar = () => {
+    setLista();
+  }
+
   return (
     <S.Anotacao>
       <S.Caderno
-        onSubmit={(e) => {
-          e.preventDefault();
-        }}
-      >
+        onSubmit={(e) => {e.preventDefault()}}>
         <S.Barra>
           <S.Input
             value={tarefa}
@@ -44,7 +39,6 @@ const Main = () => {
           />
           <S.Funcoes>
             <S.Botao onClick={() => Adc()}>adicionar tarefa</S.Botao>
-            <S.Botao onClick={() => ClearDone()}>Limpar Concluidas</S.Botao>
             <S.Botao onClick={() => ClearAll()}>Limpar Tarefas</S.Botao>
           </S.Funcoes>
         </S.Barra>
@@ -57,6 +51,7 @@ const Main = () => {
                 <input className='teste' id={item.id} type="checkbox" />
                 <label for={item.id}>{item.tarefas}</label>
                 <button onClick={() => Delete(item.id)}>X</button>
+                <button onClick={()=> Riscar()}>Feita</button>
               </div>
               <S.Hr />
             </S.Linhas>
